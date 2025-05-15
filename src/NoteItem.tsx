@@ -2,13 +2,13 @@ import { Archive, Trash2 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import type { Card } from "./types/Card";
 export default function NoteItem({
-  data,
   item,
-  setData,
+  del,
+  archive,
 }: {
-  data: Array<Card>;
   item: Card;
-  setData: React.Dispatch<Array<Card>>;
+  del: (card: Card) => void;
+  archive: (card: Card) => void;
 }) {
   return (
     <div className="rounded-lg drop-shadow-xl bg-white">
@@ -27,19 +27,13 @@ export default function NoteItem({
           <div className="flex gap-2 shrink-0">
             <button
               className="flex justify-center items-center rounded-lg border border-red-600 bg-red-600/20 text-red-600 size-10 cursor-pointer"
-              onClick={() => setData(data.filter((a) => a.uuid != item.uuid))}
+              onClick={() => del(item)}
             >
               <Trash2 size={18} />
             </button>
             <button
               className="flex justify-center items-center rounded-lg border border-orange-600 bg-orange-600/20 text-orange-600 size-10 cursor-pointer"
-              onClick={() =>
-                setData(
-                  data.map((a) =>
-                    a.uuid == item.uuid ? { ...a, active: !a.active } : a,
-                  ),
-                )
-              }
+              onClick={() => archive(item)}
             >
               <Archive size={18} />
             </button>

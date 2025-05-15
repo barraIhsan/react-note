@@ -1,26 +1,12 @@
-import { v4 as uuid } from "uuid";
-import type { Card } from "./types/Card.ts";
 export default function NoteForm({
-  setData,
-  data,
+  add,
 }: {
-  setData: React.Dispatch<Array<Card>>;
-  data: Array<Card>;
+  add: (formData: FormData) => void;
 }) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    setData([
-      ...data,
-      {
-        uuid: uuid(),
-        title: formData.get("title") as string,
-        date: new Date().toLocaleString(),
-        desc: formData.get("desc") as string,
-        active: true,
-      },
-    ]);
+    add(new FormData(e.currentTarget));
     e.currentTarget.reset();
   }
 

@@ -3,12 +3,18 @@ import NoteItem from "./NoteItem";
 import type { Card } from "./types/Card.ts";
 
 export default function NoteList({
-  setData,
   data,
+  del,
+  archive,
 }: {
-  setData: React.Dispatch<Array<Card>>;
   data: Array<Card>;
+  del: (card: Card) => void;
+  archive: (card: Card) => void;
 }) {
+  function cards(active: string) {
+    return data.filter((a) => a.active == (active == "active"));
+  }
+
   return (
     <main className="container mx-auto space-y-16 mb-24">
       <section className="space-y-8">
@@ -16,17 +22,15 @@ export default function NoteList({
           <StickyNote /> Active
         </h2>
         <div className="grid grid-cols-4 gap-6">
-          {data.filter((a) => a.active == true).length > 0 ? (
-            data
-              .filter((a) => a.active == true)
-              .map((item) => (
-                <NoteItem
-                  key={item.uuid}
-                  data={data}
-                  item={item}
-                  setData={setData}
-                />
-              ))
+          {cards("active").length > 0 ? (
+            cards("active").map((item) => (
+              <NoteItem
+                key={item.uuid}
+                item={item}
+                del={del}
+                archive={archive}
+              />
+            ))
           ) : (
             <p className="col-span-4 text-center">No cards are active</p>
           )}
@@ -37,17 +41,15 @@ export default function NoteList({
           <Archive /> Archive
         </h2>
         <div className="grid grid-cols-4 gap-6">
-          {data.filter((a) => a.active == false).length > 0 ? (
-            data
-              .filter((a) => a.active == false)
-              .map((item) => (
-                <NoteItem
-                  key={item.uuid}
-                  data={data}
-                  item={item}
-                  setData={setData}
-                />
-              ))
+          {cards("archive").length > 0 ? (
+            cards("archive").map((item) => (
+              <NoteItem
+                key={item.uuid}
+                item={item}
+                del={del}
+                archive={archive}
+              />
+            ))
           ) : (
             <p className="col-span-4 text-center">No cards are archived</p>
           )}
