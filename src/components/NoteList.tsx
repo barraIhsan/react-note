@@ -17,7 +17,8 @@ export default function NoteList({
     return data.filter(
       (a) =>
         a.active == (active == "active") &&
-        (a.title.includes(search) || a.desc.includes(search)),
+        (a.title.toLowerCase().includes(search) ||
+          a.desc.toLowerCase().includes(search)),
     );
   }
 
