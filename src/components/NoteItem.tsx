@@ -18,7 +18,7 @@ export default function NoteItem({
           item.active ? "bg-blue-400" : "bg-gray-300",
         )}
       />
-      <div className="p-5 space-y-4 text-gray-800 grid sm:grid-cols-[1fr_auto] grid-rows[repeat(3,auto)] sm:grid-rows-[repeat(2,auto)]">
+      <div className="p-5 gap-4 text-gray-800 grid sm:grid-cols-[1fr_auto] grid-rows[repeat(3,auto)] sm:grid-rows-[repeat(2,auto)]">
         <div className="w-full">
           <p className="font-medium text-xl">{item.title}</p>
           <p className="text-sm text-gray-500">~{item.date}</p>
