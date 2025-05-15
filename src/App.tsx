@@ -1,12 +1,12 @@
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
 import Navbar from "./Navbar";
-import type { Card } from "./types/Card.ts";
+import type { Note } from "./types/Note";
 import { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 
 export default function App() {
-  const [data, setData] = useState<Array<Card>>(() => {
+  const [data, setData] = useState<Array<Note>>(() => {
     const saved = localStorage.getItem("data");
     return saved ? JSON.parse(saved) : [];
   });
@@ -28,13 +28,13 @@ export default function App() {
     ]);
   }
 
-  function deleteData(card: Card) {
-    setData(data.filter((a) => a.uuid != card.uuid));
+  function deleteData(note: Note) {
+    setData(data.filter((a) => a.uuid != note.uuid));
   }
 
-  function archiveData(card: Card) {
+  function archiveData(note: Note) {
     setData(
-      data.map((a) => (a.uuid == card.uuid ? { ...a, active: !a.active } : a)),
+      data.map((a) => (a.uuid == note.uuid ? { ...a, active: !a.active } : a)),
     );
   }
 

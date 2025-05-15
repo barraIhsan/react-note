@@ -1,14 +1,14 @@
 import { Archive, Trash2 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import type { Card } from "./types/Card";
+import type { Note } from "./types/Note";
 export default function NoteItem({
   item,
   del,
   archive,
 }: {
-  item: Card;
-  del: (card: Card) => void;
-  archive: (card: Card) => void;
+  item: Note;
+  del: (note: Note) => void;
+  archive: (note: Note) => void;
 }) {
   return (
     <div className="rounded-lg drop-shadow-xl bg-white">

@@ -1,17 +1,17 @@
 import { Archive, StickyNote } from "lucide-react";
 import NoteItem from "./NoteItem";
-import type { Card } from "./types/Card.ts";
+import type { Note } from "./types/Note";
 
 export default function NoteList({
   data,
   del,
   archive,
 }: {
-  data: Array<Card>;
-  del: (card: Card) => void;
-  archive: (card: Card) => void;
+  data: Array<Note>;
+  del: (note: Note) => void;
+  archive: (note: Note) => void;
 }) {
-  function cards(active: string) {
+  function notes(active: string) {
     return data.filter((a) => a.active == (active == "active"));
   }
 
@@ -22,8 +22,8 @@ export default function NoteList({
           <StickyNote /> Active
         </h2>
         <div className="grid grid-cols-4 gap-6">
-          {cards("active").length > 0 ? (
-            cards("active").map((item) => (
+          {notes("active").length > 0 ? (
+            notes("active").map((item) => (
               <NoteItem
                 key={item.uuid}
                 item={item}
@@ -32,7 +32,7 @@ export default function NoteList({
               />
             ))
           ) : (
-            <p className="col-span-4 text-center">No cards are active</p>
+            <p className="col-span-4 text-center">No notes are active</p>
           )}
         </div>
       </section>
@@ -41,8 +41,8 @@ export default function NoteList({
           <Archive /> Archive
         </h2>
         <div className="grid grid-cols-4 gap-6">
-          {cards("archive").length > 0 ? (
-            cards("archive").map((item) => (
+          {notes("archive").length > 0 ? (
+            notes("archive").map((item) => (
               <NoteItem
                 key={item.uuid}
                 item={item}
@@ -51,7 +51,7 @@ export default function NoteList({
               />
             ))
           ) : (
-            <p className="col-span-4 text-center">No cards are archived</p>
+            <p className="col-span-4 text-center">No notes are archived</p>
           )}
         </div>
       </section>

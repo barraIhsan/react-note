@@ -1,4 +1,4 @@
-export interface Card {
+export interface Note {
   uuid: string;
   title: string;
   desc: string;
