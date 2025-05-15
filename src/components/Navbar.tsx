@@ -1,6 +1,6 @@
 import { Search, X } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export default function Navbar({
   setSearch,
@@ -8,9 +8,6 @@ export default function Navbar({
   setSearch: React.Dispatch<string>;
 }) {
   const [searchOpen, setsearchOpen] = useState(false);
-  useEffect(() => {
-    console.log(searchOpen);
-  }, [searchOpen]);
 
   const input = useRef<HTMLInputElement>(null);
 
