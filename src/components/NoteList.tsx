@@ -1,6 +1,6 @@
 import { Archive, StickyNote } from "lucide-react";
 import NoteItem from "./NoteItem";
-import type { Note } from "./types/Note";
+import type { Note } from "../types/Note";
 
 export default function NoteList({
   data,

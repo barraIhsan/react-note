@@ -1,6 +1,6 @@
 import { Archive, Trash2 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
-import type { Note } from "./types/Note";
+import type { Note } from "../types/Note";
 export default function NoteItem({
   item,
   del,

@@ -1,6 +1,6 @@
-import NoteForm from "./NoteForm";
-import NoteList from "./NoteList";
-import Navbar from "./Navbar";
+import NoteForm from "./components/NoteForm";
+import NoteList from "./components/NoteList";
+import Navbar from "./components/Navbar";
 import type { Note } from "./types/Note";
 import { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
