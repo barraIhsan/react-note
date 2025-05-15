@@ -51,7 +51,6 @@ export default function Navbar({
           className={twMerge("outline-none", !searchOpen && "hidden lg:inline")}
           ref={input}
           onChange={(e) => setSearch(e.target.value)}
-          autoFocus
         />
       </label>
       {searchOpen && (
