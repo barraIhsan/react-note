@@ -1,7 +1,14 @@
 import { Archive, StickyNote } from "lucide-react";
 import NoteItem from "./NoteItem";
+import type { Card } from "./types/Card.ts";
 
-export default function NoteList() {
+export default function NoteList({
+  setData,
+  data,
+}: {
+  setData: React.Dispatch<Array<Card>>;
+  data: Array<Card>;
+}) {
   return (
     <main className="container mx-auto space-y-16 mb-24">
       <section className="space-y-8">
@@ -9,15 +16,20 @@ export default function NoteList() {
           <StickyNote /> Active
         </h2>
         <div className="grid grid-cols-4 gap-6">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <NoteItem
-              key={i}
-              active
-              title="Ide Konten"
-              date="Selasa, 13 Mei 2025"
-              desc="Tips belajar React untuk pemula."
-            />
-          ))}
+          {data.filter((a) => a.active == true).length > 0 ? (
+            data
+              .filter((a) => a.active == true)
+              .map((item) => (
+                <NoteItem
+                  key={item.uuid}
+                  data={data}
+                  item={item}
+                  setData={setData}
+                />
+              ))
+          ) : (
+            <p className="col-span-4 text-center">No cards are active</p>
+          )}
         </div>
       </section>
       <section className="space-y-8">
@@ -25,15 +37,20 @@ export default function NoteList() {
           <Archive /> Archive
         </h2>
         <div className="grid grid-cols-4 gap-6">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <NoteItem
-              key={i}
-              active
-              title="Ide Konten"
-              date="Selasa, 13 Mei 2025"
-              desc="Tips belajar React untuk pemula."
-            />
-          ))}
+          {data.filter((a) => a.active == false).length > 0 ? (
+            data
+              .filter((a) => a.active == false)
+              .map((item) => (
+                <NoteItem
+                  key={item.uuid}
+                  data={data}
+                  item={item}
+                  setData={setData}
+                />
+              ))
+          ) : (
+            <p className="col-span-4 text-center">No cards are archived</p>
+          )}
         </div>
       </section>
     </main>
