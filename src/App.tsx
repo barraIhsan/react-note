@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 
 export default function App() {
+  const [search, setSearch] = useState<string>("");
   const [data, setData] = useState<Array<Note>>(() => {
     const saved = localStorage.getItem("data");
     return saved ? JSON.parse(saved) : [];
@@ -40,9 +41,14 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
+      <Navbar setSearch={setSearch} />
       <NoteForm add={addData} />
-      <NoteList data={data} del={deleteData} archive={archiveData} />
+      <NoteList
+        data={data}
+        search={search}
+        del={deleteData}
+        archive={archiveData}
+      />
     </>
   );
 }

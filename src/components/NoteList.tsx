@@ -4,15 +4,21 @@ import type { Note } from "../types/Note";
 
 export default function NoteList({
   data,
+  search,
   del,
   archive,
 }: {
   data: Array<Note>;
+  search: string;
   del: (note: Note) => void;
   archive: (note: Note) => void;
 }) {
   function notes(active: string) {
-    return data.filter((a) => a.active == (active == "active"));
+    return data.filter(
+      (a) =>
+        a.active == (active == "active") &&
+        (a.title.includes(search) || a.desc.includes(search)),
+    );
   }
 
   return (
@@ -32,7 +38,9 @@ export default function NoteList({
               />
             ))
           ) : (
-            <p className="col-span-4 text-center">No notes are active</p>
+            <p className="col-span-4 text-center">
+              {search ? "No notes found" : "No notes are active"}
+            </p>
           )}
         </div>
       </section>
@@ -51,7 +59,9 @@ export default function NoteList({
               />
             ))
           ) : (
-            <p className="col-span-4 text-center">No notes are archived</p>
+            <p className="col-span-4 text-center">
+              {search ? "No notes found" : "No notes are archived"}
+            </p>
           )}
         </div>
       </section>
