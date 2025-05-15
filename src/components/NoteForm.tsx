@@ -11,7 +11,7 @@ export default function NoteForm({
   }
 
   return (
-    <section className="max-w-xl mx-auto mt-32 py-16">
+    <section className="px-5 max-w-xl mx-auto mt-32 py-16">
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <label className="flex flex-col gap-1.5">
           Title
